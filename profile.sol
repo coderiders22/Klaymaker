@@ -4,6 +4,8 @@ contract SocialMedia {
     struct User {
         string username;
         string bio;
+        uint256 latitude; // Store location data
+        uint256 longitude; // Store location data
         address userAddress;
         address[] following;
         mapping(address => bool) followers;
@@ -11,7 +13,33 @@ contract SocialMedia {
     }
 
     mapping(address => User) public users;
+     function updateLocation(uint256 _latitude, uint256 _longitude) public {
+        users[msg.sender].latitude = _latitude;
+        users[msg.sender].longitude = _longitude;
+    }
+    function getNearbyUsers(uint256 _radius) public view returns (address[] memory) {
+        address[] memory nearbyUsers = new address[](100); // Assuming a maximum of 100 nearby users
+        uint256 count = 0;
 
+        User storage currentUser = users[msg.sender];
+
+        for (uint256 i = 0; i < 100; i++) {
+            User storage otherUser = users[address(i)];
+            if (otherUser.latitude != 0 && otherUser.longitude != 0) { // User exists and has a location set
+                uint256 distance = calculateDistance(currentUser.latitude, currentUser.longitude, otherUser.latitude, otherUser.longitude);
+                if (distance <= _radius && address(i) != msg.sender) { // Within radius and not the current user
+                    nearbyUsers[count] = address(i);
+                    count++;
+                }
+            }
+        }
+
+        return nearbyUsers;
+    }
+    function calculateDistance(uint256 lat1, uint256 lon1, uint256 lat2, uint256 lon2) public pure returns (uint256) {
+        // Formula for calculating distance (You might use a more accurate formula)
+        return ((lat1 - lat2)**2 + (lon1 - lon2)**2);
+    }
     event UserRegistered(address user, string username);
     event MessageSent(address sender, address receiver, string content);
 
