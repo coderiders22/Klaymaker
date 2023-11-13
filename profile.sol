@@ -4,6 +4,8 @@ contract SocialMedia {
     struct User {
         string username;
         string bio;
+        uint256 latitude; // Store location data
+        uint256 longitude; // Store location data
         address userAddress;
         address[] following;
         mapping(address => bool) followers;
@@ -11,6 +13,10 @@ contract SocialMedia {
     }
 
     mapping(address => User) public users;
+     function updateLocation(uint256 _latitude, uint256 _longitude) public {
+        users[msg.sender].latitude = _latitude;
+        users[msg.sender].longitude = _longitude;
+    }
 
     event UserRegistered(address user, string username);
     event MessageSent(address sender, address receiver, string content);
