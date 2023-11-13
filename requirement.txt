@@ -1,2 +1,17 @@
+- [ ] Chat Features
+- [ ] Metamask authentication 
+- [ ] Filters
+- [ ] Search
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+
 
 
