@@ -1,0 +1,17 @@
+- [ ] Chat Features
+- [ ] Metamask authentication 
+- [ ] Filters bio,gender
+- [ ] Search
+- [ ] Options show -: users in that radius and we can send messageby clicking on them
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+
+
+
